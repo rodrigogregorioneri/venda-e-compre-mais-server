@@ -1,0 +1,21 @@
+stages:
+  - build
+  - deploy
+
+maven-build:
+  image: maven:3-jdk-8
+  stage: build
+  script: "mvn package -B"
+
+deploy:
+  stage: deploy
+  image: ruby:latest
+  script:
+  - apt-get update -qy
+  - apt-get install -y ruby-dev
+  - gem install dpl
+  - dpl --provider=heroku --app=venda-e-compre-mais-server --api-key=$HEROKU_KEY
+  only:
+  - master
+  
+  
