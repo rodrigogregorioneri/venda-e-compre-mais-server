@@ -26,7 +26,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("br.com.comprevenda.neri.controller"))
+                .apis(RequestHandlerSelectors.any())
                 .build()
                 .globalOperationParameters(globalOperationParameters())
                 .apiInfo(apiInfo())
